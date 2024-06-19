@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raccourcisseur de lien en js</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Roboto+Mono:wght@300;400&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Roboto Mono', monospace;
+    }
+    header{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 0;
+        background-color: #7f99df;
+        color: #fff;
+    }
+    h1{
+        margin-bottom: 15px;
+    }
+    section{
+        height: calc(100vh - 150px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    main{
+        display: flex;
+        flex-direction: column;
+        width: 32%;
+        text-align: center;
+    }
+    .erreur{
+        color: rgb(226, 30, 30);
+        padding: 15px;
+    }
+    input , button{
+        margin: 10px 0;
+        padding: 15px;
+        text-align: center;
+        border-radius: 6px;
+        border: 0;
+        outline: 0;
+        width: 100%;
+    }
+    input{
+        background-color: #dfdef4;
+    }
+    button{
+        background-color: #255fe5;
+        color: #fff;
+        text-transform: capitalize;
+        cursor: pointer;
+    }
+    .resultat{
+        margin-top: 10px;
+        color: #255fe5;
+        padding: 15px;
+        border-radius: 6px;
+        font-size: 13px;
+        border: 1px solid #255fe5;
+        display: none;
+    }
+    @media screen and (max-width: 500px) {
+        header{
+            font-size: 0.5em;
+        }
+        input , button{
+            margin: 10px 0;
+            padding: 15px 4px;
+            width: 100%;
+            font-size: 45%;
+        }
+    }
+
+</style>
+
+<body>
+    <header>
+        <h1>Application raccourssiceur de lien</h1>
+        <p>Mettez un lien valide, sinon ca ne marchera pas!</p>
+    </header>
+    <section>
+        <main>
+            <p class="erreur"></p>
+            <input type="text" placeholder="Lien à raccourcir" class="link">
+            <button>Raccourcir le lien</button>
+            <div class="resultat"></div>  
+        </main>
+    </section>
+    <script>
+
+        var erreur = document.querySelector(".erreur");
+        var lien = document.querySelector(".link");
+        var resultat = document.querySelector(".resultat");
+        var raccourcirBtn = document.querySelector("button");
+
+        console.log(lien);
+
+
+        raccourcirBtn.addEventListener("click", function(){
+
+            if(!lien.value == ""){
+                // // vider l'erreur
+                // erreur.innerHTML = "";
+
+                // let url = `https://shortern-url.p.rapidapi.com/redirect/%7BshortUrl%7D${lien.value}`;
+                // fetch(url)
+                // .then(response => response.json())
+                // .then(data => console.log(data));
+
+
+                // resultat.style.display ="block"
+
+                console.log(lien.value);
+                var data = {
+                    "domain":"c2cc.short.gy",
+                    "originalURL":lien.value
+                    }; 
+                fetch('https://api.short.io/links/public', {
+                    method: 'post',
+                    headers: {
+                    'accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'authorization': 'pk_5xUe2p9ip54JKXDh'
+                    },
+                    body: JSON.stringify(data)
+                }).then(function(response){ 
+                    return response.json();
+                    }).then(function(data){
+                    resultat.innerHTML = data.shortURL
+                    })
+
+                resultat.style.display ="block"
+
+                if(resultat.innerHTML.length == 0){
+                    resultat.innerHTML="Lien non valide"
+                }
+
+            }else{
+                erreur.innerHTML = "veuillez remplir le champs !";
+                resultat.style.display = "none";
+            }
+
+        }, false)
+
+    </script>
+    
+</body>
+</html>

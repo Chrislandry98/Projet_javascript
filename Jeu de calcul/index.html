@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de Calcul</title>
+    <link href="Style.css" rel="stylesheet">
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@700&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:'Poppins', sans-serif;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #18f;
+        flex-direction: column;
+        width: 100%;
+    }
+    main{
+        margin: 25em 25em;
+    }
+    section{
+        width: 37.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    section .calcul{
+        display: flex;
+    }
+    section .calcul h1{
+        color: #fff;
+        font-size: 3.1rem;
+        margin: 0 1.2rem;
+    }
+    section h2{
+        color: #fff;
+        margin: 0.6rem 0;
+    }
+    section input{
+        padding: 0.6rem 0;
+        border: 0;
+        outline: 0;
+        color: #fff;
+        border-bottom: 2px solid #fff;
+        background-color: transparent;
+        margin-bottom: 1.8rem;
+    }
+    .verification{
+        color: #fff;
+        padding: 0.31rem 1.5rem;
+        margin-bottom: 1.5rem;
+        border-radius: 0.6rem;
+        text-align: center;
+    }
+    section input[type="submit"]{
+        padding: 0.6rem 4rem;
+        border: 0;
+        background-color: blue;
+        cursor: pointer;
+        border-radius: 0.6rem;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        transition: 0.5s;
+
+    }
+    section input[type="submit"]:hover{
+        letter-spacing: 2px;
+    }
+    .score{
+        font-size: 25px;
+        color: #fff;
+        text-align: center;
+
+    }
+    a{
+        color: #fff;
+        text-decoration: 0;
+        border: 1px solid #fff;
+        padding: 10px 25px;
+        border-radius: 5px;
+        margin: 25px 0;
+        display: none;
+        text-align: center;
+    }
+    span{
+        font-size: 100px;
+    }
+
+    @media screen and (max-width: 600px) {
+        .verification{
+            font-size: 0.5rem;
+            padding: 0.6rem 0.3rem;
+        }
+        section h2{
+            font-size: 0.5rem;
+        }
+        section .calcul h1{
+            font-size: 1.1rem;
+        }
+        section input{
+            font-size: 0.4rem;
+        }
+        section input[type="submit"]{
+            padding: 0.6rem 2rem;
+            font-size: 0.5rem;
+            transition: 0.5s;
+        }
+        a{
+            padding: 0.6rem 0.3rem;
+            font-size: 0.5em;
+        }
+
+    }
+</style>
+
+<body>
+    <main>
+        <p class="verification"></p>
+        <section>
+            <div class="calcul">
+                <h1 class="N1"></h1>
+                <h1 class="signe">+</h1>
+                <h1 class="N2"></h1>
+            </div>
+            <h2>Donner la reponse</h2>
+            <input type="number" class="resultat">
+            <input type="submit" value="soumettre" class="send">
+        </section>
+        <p class="score"></p>
+        <a href="index.html" class="link">Recommencer</a>
+    </main>
+    
+    <script>
+        // Initialisation des variables
+        var Nber1 = document.querySelector('.N1'),
+            Nber2 = document.querySelector('.N2'),
+            sign = document.querySelector('.signe'),
+            result = document.querySelector('.resultat'),
+            verification = document.querySelector('.verification'),
+            restart = document.querySelector('.link'),
+            section = document.querySelector('section'),
+            count = 0 ,
+            send = document.querySelector('.send'),
+            score = document.querySelector('.score');
+
+
+
+        // Creer des nombres aléatoires et inserer dans le jeu
+
+        var random1 = Math.random()*11 << 0;
+        var random2 = Math.random()*11 << 0;
+
+        Nber1.innerHTML = random1;
+        Nber2.innerHTML = random2;
+
+        // Verification des résultats lors du click du bouton soumettre
+
+        send.addEventListener("click", function(){
+            var answer = document.querySelector('.resultat').value;
+            if(random1 + random2 == answer){
+                verification.innerHTML= "Correcte.";
+                verification.style.background = "green";
+                // Renouveler les nombres aléatoires
+                    random1 = Math.random()*11 << 0;
+                    random2 = Math.random()*11 << 0;
+                    Nber1.innerHTML = random1;
+                    Nber2.innerHTML = random2;
+                // compter les victoires    
+                count += 1;
+            }
+            else{
+                verification.innerHTML= "Vous avez perdu.";
+                verification.style.background = "red";
+                section.innerHTML=" ";
+                score.innerHTML =`<span>${count}</span></br> Score`
+                restart.style.display = "block"
+            }
+        }, false)
+
+    </script>
+</body>
+</html>

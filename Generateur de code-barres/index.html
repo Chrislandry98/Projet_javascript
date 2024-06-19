@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generateur de code-barres</title>
+    <link href="style.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@700&family=Roboto:wght@100;300;400;500&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Roboto', sans-serif;
+    }
+    body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #675afe;
+    }
+    section{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 600px;
+        background-color: #fff;
+        padding: 20px;
+        flex-direction: column;
+        margin: 25em 25em;
+    }
+    img{
+        width: 450px;
+    }
+    h4{
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+        font-size: 25px;
+    }
+    .search{
+        display: flex;
+        width: 100%;
+        margin-bottom: 10px;
+        height: 50px;
+    }
+    input{
+        width: 75%;
+        padding: 8px;
+        outline: 0;
+        border: 1px solid #999;
+        font-size: 20px;
+    }
+    button{
+        cursor: pointer;
+        padding: 8px;
+        background-color: #675afe;
+        color: #fff;
+        border: 1px solid #675afe;
+        letter-spacing: 1px;
+        transition: 0.5s;
+    }
+    button:hover{
+        background-color: #2212d9;
+    }
+    #validCodeButton{
+        width: 25%;
+    }
+    #container{
+        border: 1px solid #999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 300px;
+    }
+    #pdfSpace{
+        width: 100%;
+    }
+    .erreur{
+        text-align: center;
+        font-size: 14px;
+        padding: 8px;
+        width: 100%;
+        background-color: rgb(189, 92, 92);
+        color: #fff;
+    }
+    #pdfSpace button{
+        width: 100%;
+        margin-top: 20px;
+        height: 50px;
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <section>
+        <h4>Générateur de code-barres</h4>
+        <div class="search">
+            <input type="text" placeholder="Entrer un texte...">
+            <button id="validCodeButton">Générer</button>
+        </div>
+        <div id="container">
+            <img src="barcode-png.png" alt="code-barre">
+        </div>
+        <div id="pdfSpace"></div>
+    </section>
+    
+    <script>
+        // Initialisation des variables
+        var genererBoutton = document.querySelector('#validCodeButton'),
+            text = document.querySelector('input'),
+            box = document.querySelector('#container'),
+            zonePdf= document.querySelector('#pdfSpace');
+        
+            console.log(genererBoutton);
+
+        genererBoutton.addEventListener("click", function(){
+            if(text.value.length > 0){
+                if(text.value.length < 50){
+                    box.innerHTML ="<svg id='barcode'></svg>"
+                    JsBarcode("#barcode", text.value);
+                    box.style.border = '1px solid #999';
+
+                    // creer le bouton pour telecharger le pdf
+
+                    zonePdf.innerHTML = "<button onclick= 'genererPDF()'> Telecharger le code bar </button>"
+                    zonePdf.style.display= "flex";
+                }else{
+                    box.style.border = "0";
+                    box.style.height = "40px";
+                    box.innerHTML = "<p class = 'erreur'> Le texte est trop long !</p>";
+                    zonePdf.style.display = "none";
+                }
+            }else{
+                box.style.border = "0";
+                box.style.height = "40px";
+                box.innerHTML = "<p class = 'erreur'>Remplissez le champ !</p>";
+                zonePdf.style.display = "none";
+            }
+        }, false)
+
+
+        // Generer le pdf
+        function genererPDF(){
+            var opt = {
+                margin:       1,
+                filename:     `${text.value}.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'in', format: 'a5', orientation: 'l' }
+            };
+
+            // New Promise-based usage:
+            html2pdf().set(opt).from(box).save();
+
+            // Old monolithic-style usage:
+            html2pdf(box, opt);
+        }
+    </script>
+
+    
+</body>
+</html>

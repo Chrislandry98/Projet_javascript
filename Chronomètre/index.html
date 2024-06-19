@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronomètre</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Roboto:wght@100;300;500&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #21B66F;
+}
+.chronometre{
+    background-color: #fff;
+    padding: 0.6em;
+    border-radius: 6px;
+    width: 25em;
+    text-align: center;
+    margin: 35em 35em;
+}
+.timer{
+    margin: auto;
+    max-width: 100%;
+    border: 1px solid #999;
+    border-radius: 0.4rem;
+    padding: 0.4rem 0;
+    text-align: center;
+    font-size: 2.2em;
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+}
+.timer span{
+    font-family: 'Dancing Script', cursive;
+    padding: 0.4rem;
+}
+.controls{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+button{
+    background-color: #1d9c5e;
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.4rem;
+    width: 31%;
+    border: 0;
+    letter-spacing: 1px ;
+    transition: 0.5s;
+    cursor: pointer;
+}
+@media screen and (max-width: 600px) {
+   body{
+    font-size: 0.5em;
+   }
+   .chronometre{
+    font-size: 1em;
+    width: 100%;
+   } 
+}
+@media screen and (max-width: 300px) {
+   body{
+    font-size: 0.5em;
+    align-items: center;
+    height: 70vh;
+   }
+   .chronometre{
+    font-size: 0.5em;
+    width: 100%;
+   } 
+   button{
+    font-size: 0.2em;
+    width: 100%;
+    padding: 0.5rem 0.1em;
+   }
+}
+</style>
+
+
+<body>
+
+    <div class="chronometre">
+        <div class="timer">
+            <span id="heure">0 h</span>
+            <span id="min">0 min</span>
+            <span id="sec">0 s</span>
+            <span id="milsec">0 ms</span>
+        </div>
+        <div class="controls">
+            <button id="start">Start</button>
+            <button id="stop">Stop</button>
+            <button id="reset">Reset</button>
+        </div>
+    </div>
+
+</body>
+
+
+<script>
+    var span = document.getElementsByTagName('span'),
+    heure = document.getElementById('heure'),
+    minute = document.getElementById('min'),
+    seconde = document.getElementById('sec'),
+    milSec = document.getElementById('milsec'),
+    start_B = document.querySelector('#start'),
+    stop_B = document.querySelector('#stop'),
+    reset_B = document.querySelector('#reset'),
+    ms = 0, s = 0, mn = 0, h = 0, t;        
+
+    // fonction pour le décompte du chronomètre
+
+    function décompte(){
+        ms+=1;
+        if(ms == 10){
+            ms=1;
+            s+=1
+        }
+        if(s == 60){
+            s = 0;
+            mn+=1
+        }
+        if(mn == 60){
+            mn  = 0;
+            h+=1
+        }
+
+        heure.innerHTML = h + "h";
+        minute.innerHTML = mn + "mn";
+        seconde.innerHTML = s + "s";
+        milSec.innerHTML = ms + "ms";
+    }
+
+    // Implémentation du bouton "Start"
+
+    start_B.addEventListener("click", function(){
+        t = setInterval(décompte,100);
+        start_B.disabled = true;
+    }, false);
+
+    // Implémentation du bouton "Stop"
+
+    stop_B.addEventListener("click", function(){
+        clearInterval(t);
+        stop_B.disabled = false;
+    }, false);
+
+    // Implémentation du bouton "Reset"
+
+    reset_B.addEventListener("click", function(){
+        clearInterval(t);
+        start_B.disabled = false;
+        ms =0, s = 0, mn = 0, h = 0;
+
+
+        heure.innerHTML = h + "h";
+        minute.innerHTML = mn + "mn";
+        seconde.innerHTML = s + "s";
+        milSec.innerHTML = ms + "ms";
+    }, false);
+</script>
+</html>

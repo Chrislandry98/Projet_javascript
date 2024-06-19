@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification mot de passe</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@100&family=Roboto:wght@100;300;400;500&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Roboto', sans-serif;
+    }
+    body{
+        background-color: #675afe;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+    main{
+        margin: 25em 25em;
+    }
+    .formulaire{
+        background-color: #fff;
+        width: 21.8rem;
+        padding: 1.3rem;
+        border-radius: 0.3rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+    }
+    input{
+        padding: 0.7rem;
+        border: 1px solid #ccc;
+        outline: 0;
+        border-radius: 0.2rem;
+        margin-top: 0.3rem;
+        margin-bottom: 0.4rem;
+    }
+    input[type="submit"]{
+        background-color: #675afe;
+        color: #fff;
+        border:  1px solid #675afe;
+        margin-top: -1.8rem;
+    }
+
+    #check{
+        display: none;
+        flex-direction: column;
+        background-color: #fff;
+        border-radius: 6px;
+        width:  350px;
+        color: #000;
+        position: relative;
+        padding: 20px;
+        margin-top: 20px;
+        letter-spacing: 0.5px;
+        animation: animation 0.5s ease-out;
+    }
+
+    @keyframes animation{
+        from{
+            transform: translateY(100px);
+        }
+    }
+    h3{
+        font-size: 1rem;
+        font-weight: 400;
+    }
+    #check p{
+        margin-left: 0.4rem;
+        padding: 0.4rem 0;
+        font-size: 0.9rem;
+    }
+
+    .erreur{
+        color: red;
+    }
+    .erreur:before{
+        position: relative;
+        left: -7px;
+        content:"✕";
+    }
+    .img1{
+        width: 20px;
+        position: relative;
+        left: 280px;
+        bottom: 35px;
+        visibility: hidden;
+        z-index: 4;
+    }
+    .img2{
+        width: 20px;
+        position: relative;
+        left: 280px;
+        bottom: 55px;
+        z-index: 3;
+        
+    }
+    .valide{
+        color: green;
+    }
+    .valide:before{
+        position: relative;
+        left: -7px;
+        content:"✓";
+    }
+
+    @media screen and (max-width: 500px) {
+        main{
+            font-size: 0.1em;
+            width: 7.8rem;
+        }
+        .formulaire{
+            width: 100%;
+            font-size: 100%;
+        }
+        input{
+            padding: 0.3rem;
+            font-size: 0.5em;
+        }
+        h3{
+        font-size: 0.5rem;
+        }
+        #check p{
+            margin-left: 0.4rem;
+            padding: 0.4rem 0;
+            font-size: 0.4rem;
+        }
+        #check{
+            width:  7.8rem;
+            padding: 1.2rem;
+            margin-top: 1.2rem;
+        }
+    }
+    
+</style>
+
+<body>
+    <main>
+        <div class="formulaire">
+            <form action="">
+                <label>Utilisateur</label>
+                <input type="text" required>
+                <label>Mot de passe</label>
+                <input type="password" id="password" required>
+                <img src="photo_2023-10-24_14-32-05.jpg" class="img1" id="image">
+                <img src="photo_2023-10-24_14-32-11.jpg" class="img2" id="image">
+                <input type="submit" value="Envoyer">
+            </form>
+        </div>
+    
+        <div id="check">
+            <h3>Le mot de passe doit contenir les élements suivants</h3>
+            <p id="minuscule" class="erreur">Une lettre minuscule</p>
+            <p id="majuscule" class="erreur">Une lettre majuscule</p>
+            <p id="chiffre" class="erreur">Un chiffre</p>
+            <p id="longeur" class="erreur">8 caractères</p>
+        </div>
+    </main>
+    
+    <script>
+        /* Initialisation des variables*/
+
+        var input = document.getElementById('password'),
+            validation = document.getElementById('check'),
+            minuscule = document.getElementById('minuscule'),
+            majuscule = document.getElementById('majuscule'),
+            chiffre = document.getElementById('chiffre'),
+            caracteres = document.getElementById('longeur'),
+            visuel = document.querySelectorAll('#image'),
+            img1 = document.querySelector('.img1'),
+            img2 = document.querySelector('.img2');
+            
+
+        /* Afficher les restrictions lors de la saisie*/
+
+        document.addEventListener("click", function(e){
+            if(e.target.id == "password" || e.target.id == "image"){
+                validation.style.display="block"
+            }
+            if(e.target.id != "password" && e.target.id !="image"){
+                validation.style.display="none"
+            }
+
+            
+
+        }, false)
+
+
+        /* Fonctipon pour afficher ou masquer le mot de passe*/
+
+        visuel.forEach(Element =>{
+            Element.addEventListener("click", function(e){
+                if(e.target.className == "img2"){
+                    img2.style.visibility = 'hidden';
+                    img1.style.visibility = 'visible';
+                    input.type = "text";
+                    console.log(e.target.className);
+                }
+                else if(e.target.className == "img1"){
+                    img1.style.visibility = 'hidden';
+                    img2.style.visibility = 'visible';
+                    input.type = "password";
+                }
+            }, false)
+        })
+
+        // Fonction pour valider les caractètres lors de la saisie
+
+        input.addEventListener("keyup", function(){
+
+            // Valider les lettres minuscules
+            if(/[a-z]/.test(input.value)){
+                minuscule.classList.remove('erreur');
+                minuscule.classList.add('valide')
+            }
+            else{
+                minuscule.classList.add('erreur');
+                minuscule.classList.remove('valide')
+            }
+            // Valider les lettres majuscules
+            if(/[A-Z]/.test(input.value)){
+                majuscule.classList.remove('erreur');
+                majuscule.classList.add('valide')
+            }
+            else{
+                majuscule.classList.add('erreur');
+                majuscule.classList.remove('valide')
+            }
+            // Valider les chiffres
+            if(/[0-9]/.test(input.value)){
+                chiffre.classList.remove('erreur');
+                chiffre.classList.add('valide')
+            }
+            else{
+                chiffre.classList.add('erreur');
+                chiffre.classList.remove('valide')
+            }
+            // Valider le nombre de caractères
+            if(input.value.length >= 8){
+                caracteres.classList.remove('erreur');
+                caracteres.classList.add('valide')
+            }
+            else{
+                caracteres.classList.add('erreur');
+                caracteres.classList.remove('valide')
+            }
+        }, false)
+    </script>
+</body>
+</html>

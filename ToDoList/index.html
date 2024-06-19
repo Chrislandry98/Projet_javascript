@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoList</title>
+    <link href="ToDoList.css" rel="stylesheet">
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,300&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+body{
+    background-color: #4285f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+section{
+    background-color: white;
+    padding: 10px;
+    width: 450px;
+    border-radius: 6px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin: 35rem 35rem;
+}
+h1{
+    text-align: center;
+    margin-bottom: 10px;   
+}
+.inputSpace{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+input{
+   width: 90%;
+   padding: 10px 5px; 
+   height: 39px;
+   border: 1px solid #b3b2b2;
+   outline: 0;
+   border-radius: 6px 0 0 6px;
+}
+button{
+    width: 10%;
+    font-size: 20px;
+    height: 39px;
+    border:0;
+    background-color: #4285f4;
+    color: white;
+    border-radius: 0 6px 6px 0;
+}
+.tache_style{
+    margin: 10px 0;
+    padding: 10px 0;
+    padding-left: 5px;
+    border-radius: 6px;
+    color:#fff;
+    background-color: #699df0;
+    word-break: break-all;
+    cursor: pointer;
+    animation: anime 0.5s linear;
+}
+.tache_style:last-child{
+    margin-bottom: 0;
+}
+@keyframes anime {
+   from {
+        transform: translateY(50px);
+   } 
+}
+.tache_barrée{
+    background-color: rgb(247, 118, 118);
+    text-decoration: line-through;
+}
+
+@media screen and (max-width: 600px) {
+   body{
+    font-size: 1em;
+    height: 50%;
+   } 
+   section{
+    width: 75%;
+   }
+}
+@media screen and (max-width: 300px) {
+   body{
+    font-size: 0.5em;
+   }
+}
+
+</style>
+
+
+<body>
+
+
+    <section>
+        <h1>To Do List</h1>
+        <div class="conteneur">
+            <div class="inputSpace">
+                <input type="text" placeholder="Ajouter une tache..." id="zoneSaisie">
+                <button id="addButton">+</button>
+            </div>
+            <div id="todoconteneur"></div>
+        </div>
+    </section>
+
+    <script>
+        // Initialisation des variables
+
+        var addButton = document.querySelector('#addButton');
+        var toDoConteneur = document.querySelector('#todoconteneur');
+        var zoneDeSaisie = document.querySelector('#zoneSaisie');
+
+
+        // creation d'un bouton d'ajout des taches
+
+        addButton.addEventListener("click", function(){
+            if(zoneDeSaisie.value != ""){
+                var tache = document.createElement("p")
+            }
+        /************************************************ */
+
+            tache.innerHTML = zoneDeSaisie.value;
+            tache.classList.add('tache_style');
+        /************************************************ */
+
+            toDoConteneur.appendChild(tache);
+            zoneDeSaisie.value = "";
+        /**************************************************/
+            tache.addEventListener("click", function(){
+                tache.classList.add('tache_barrée');
+            }, false)
+        /************************************************ */
+            tache.addEventListener("dblclick", function(){
+                toDoConteneur.removeChild(tache);
+            }, false)
+
+        }, false)
+    </script>
+
+
+
+</body>
+</html>

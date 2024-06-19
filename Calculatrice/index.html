@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculatrice</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@100&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,300&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;;
+    }
+    body{
+        height: 100vh;
+    }
+    main{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 75vh;
+        background-color: #627ff7;
+    }
+    header{
+        /* height: 200px; */
+        align-items: center;
+        text-align: center;
+        padding: 80px;
+        font-size: xx-large;
+        letter-spacing: 5px;
+    }
+    section{
+        border: 1px solid black;
+        width: 40.6rem;
+        padding: 25px 25px;
+        background-color: white;
+        /* border-radius: 16px; */
+    }
+    .container{
+        border: 1px solid rgb(199, 198, 198);
+        margin-top: 20px;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(255, 255, 255);
+        border-radius: 16px;
+        outline: 0;
+    }  
+    button{
+        width: 7.5rem; 
+        font-size: 3.1rem;
+        /* padding: 15px 15px; */
+        border-radius: 16px;
+        cursor: pointer;
+        font-weight: bolder;
+        background: #fff;
+        color:black;
+        border: 1px solid rgb(127, 126, 126);
+    }
+    button:hover{
+        color: #fff;
+        background-color: #0e0e0f;
+    }
+    .container div{
+        min-width: 50%;
+        border: 1px #ffffff solid;
+        display: flex;
+        gap: 15px;
+        padding: 15px 15px;
+        /* border-radius: 16px; */
+    }
+    input{
+        width: 100%;
+        height: 80px;
+        font-size: 1.8rem;
+        color: black;
+        font-weight:bolder;
+        outline: 0;
+        padding: 0.9rem;
+        border: 1px solid rgb(213, 213, 213);
+    }
+    img{
+        width:50px;
+        padding: 0px;
+        margin-top: 15px;
+    }
+    #egal{
+        width: 250px ;
+        color: rgb(255, 255, 255);
+        background-color: rgb(19, 19, 19);
+        
+    }
+    #plus,#moins,#multiplier,#diviser,#pourcentage{
+        color: white;
+        background-color: rgba(247, 136, 0, 0.883)
+    }
+    #restart{
+        color: rgb(255, 255, 255);
+        background-color: rgb(19, 19, 19);
+    }
+    #delete{
+        background-color: rgb(245, 88, 88);
+    }
+    a{
+        text-decoration: none;
+        color: #fff;
+    }
+
+    @media screen and (max-width: 900px) {
+        .container{
+            width: 14rem;
+        }
+        .container div{
+            width: 12rem;
+            margin-left: 15px;
+            gap: 3px;
+        }
+        #plus,#moins,#multiplier,#diviser,#pourcentage{
+            width: 25%;
+        }
+        #restart{
+            width: 25%;
+        }
+        #delete{
+            width: 25%;
+        }
+        img{
+            width:15px;
+            padding: 0px;
+            margin-top: 15px;
+        }
+        button{
+            font-size: 0.8rem;
+            padding: 1px 1px;
+            border-radius: 5px;
+        }
+        header{
+            /* height: 200px; */
+            padding: 30px;
+            font-size: 0.5rem;
+            letter-spacing: 5px;
+        } 
+        input{
+            height: 50px;
+            font-size: 1rem;
+            width: 50%;
+        }
+        section{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        input{
+            height: 50px;
+            font-size: 0.5em;
+            width: 50%;
+        }
+        header{
+            /* height: 200px; */
+            padding: 20px;
+            font-size: 0.2rem;
+            letter-spacing: 5px;
+            text-align: center;
+        } 
+        header p{
+            font-size: 0.5rem;
+        }
+        button{
+            font-size: 0.5rem;
+            padding: 0 0;
+            border-radius: 5px;
+        }
+        #plus,#moins,#multiplier,#diviser,#pourcentage{
+            width: 25%;
+        }
+        #restart{
+            width: 25%;
+        }
+        #delete{
+            width: 25%;
+        }
+        
+        section{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+</style>
+
+<body>
+    <header>
+        <h1>CALCULATRICE</h1>
+        <p>Faites vos calculs avec précision</p>
+    </header>
+    <main>
+        <section>
+            <input type="text" id="input">
+            <div class="container">
+                <div>
+                    <button id="delete"><img src="delete-svgrepo-com (1).svg" alt=""></button>
+                    <button id="restart"><a href="index.html">AC</a></button>
+                    <button id="pourcentage">%</button>
+                    <button id="diviser">/</button>
+                </div>
+                <div>
+                    <button id="sept">7</button>
+                    <button id="huit">8</button>
+                    <button id="neuf">9</button>
+                    <button id="multiplier">x</button>
+                </div>
+                <div>
+                    <button id="quatre">4</button>
+                    <button id="cinq">5</button>
+                    <button id="six">6</button>
+                    <button id="moins">-</button>
+                </div>
+                <div>
+                    <button id="un">1</button>
+                    <button id="deux">2</button>
+                    <button id="trois">3</button>
+                    <button id="plus">+</button>
+                </div>
+                <div>
+                    <button id="zero">0</button>
+                    <button id="virgule">.</button>
+                    <button id="egal">=</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <script>
+        //Initialisation des variables
+        var input = document.getElementById("input");
+        var button = document.querySelectorAll("button");
+        var result = 0;
+        var signe;
+        var egal = document.getElementById("egal");
+        var restart = document.getElementById("restart");
+        var erase = document.getElementById("delete");
+        var percent = document.getElementById("pourcentage");
+        var virgule = document.getElementById("virgule");
+
+        // Fonction pour saisir le nombre
+        function inscrire_nombre(){
+            button.forEach(Element=>{
+                Element.addEventListener("click", (e)=>{
+                    if(e.target.id == "un"){
+                        input.value = input.value + "1";
+                    }
+                    if(e.target.id == "deux"){
+                        input.value = input.value + "2";
+                    }
+                    if(e.target.id == "trois"){
+                        input.value = input.value + "3";
+                    }
+                    if(e.target.id == "quatre"){
+                        input.value = input.value + "4";
+                    }
+                    if(e.target.id == "cinq"){
+                        input.value = input.value + "5";
+                    }
+                    if(e.target.id == "six"){
+                        input.value = input.value + "6";
+                    }
+                    if(e.target.id == "sept"){
+                        input.value = input.value + "7";
+                    }
+                    if(e.target.id == "huit"){
+                        input.value = input.value + "8";
+                    }
+                    if(e.target.id == "neuf"){
+                        input.value = input.value + "9";
+                    }
+                    if(e.target.id == "zero"){
+                        input.value = input.value + "0";
+                    }
+                    
+                })
+            })
+        }
+
+        // Fonction pour les calculs
+        function calculs(){
+            button.forEach(Element=>{
+                Element.addEventListener("click", (e)=>{
+                    if(e.target.id == "plus"){
+                        result += Number(input.value);
+                        input.value =""
+                        
+                        signe = "a"
+                    }
+                    if(e.target.id == "moins"){
+                        result = Number(input.value);
+                        input.value =""
+                    
+                        signe = "s"
+                    
+                    }
+                    if(e.target.id == "multiplier"){
+                        result = 1;
+                        result *= Number(input.value);
+                        input.value =""
+                        
+                        signe = "m"
+                    }
+                    if(e.target.id == "diviser"){
+                        result = Number(input.value);
+                        input.value =""
+
+                        signe = "d"
+                    }
+                })
+            })
+        }
+
+        // fonction pour afficher le resultat
+        function resultat(){
+            egal.addEventListener("click", function(){
+                if(signe == "a"){
+                    result += Number(input.value)
+                    signe =""
+                }
+                if(signe == "s"){
+                    result -= Number(input.value)
+                    signe =""
+                }
+                if(signe == "m"){
+                    result *= Number(input.value)
+                    signe =""
+                }
+                if(signe == "d"){
+                    result /= Number(input.value)
+                    signe =""
+                }
+            
+                input.value = result;
+                result = 0;
+                
+            })
+        }
+
+        // fonction pour effacer le chiffre
+        function effacer(){
+            erase.addEventListener("click", function(){
+                var value = input.value;
+                var length = value.length
+                var cutted = (value).substring(0, length-1);
+
+                input.value = cutted;
+            
+            })
+        }
+        // fonction pour le pourcentage
+
+        function pourcentage(){
+            percent.addEventListener("click", function(){
+                input.value /= 100;
+            })
+        }
+        // fonction pour les décimales
+
+        function décimale(){
+            virgule.addEventListener("click", function(){
+            var splitted =  input.value + ".";
+            input.value = splitted;
+            })
+        }
+
+        inscrire_nombre();
+        calculs();
+        resultat();
+        effacer();
+        pourcentage();
+        décimale();
+
+    </script>
+</body>
+</html>

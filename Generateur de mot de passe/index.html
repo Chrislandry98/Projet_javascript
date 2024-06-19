@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generateur de mot de passe</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@700&family=Roboto:wght@100;300;400;500&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Roboto', sans-serif;
+
+    }
+    ::selection{
+    background-color: #fff; 
+    } 
+    body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #5372f0;
+    }
+    .zoneDeSaisie{
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        width: 21.8rem;
+        margin: 30em 30em;
+    }
+    h2{
+        text-transform: capitalize;
+        font-size: 16PX;
+        font-weight: 400;
+        text-align: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+    }
+    .pswBox{
+        padding: 0 10px;
+    }
+    input{
+        width: 100%;
+        letter-spacing: 3px;
+        padding: 20px;
+        font-size: 17px;
+        text-align: center;
+        font-weight: 400;
+        outline: 0;
+        border: 1px solid #ccc;
+    }
+    .buttons{
+        padding: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    button{
+        text-transform: capitalize;
+        padding: 10px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+    button:first-child{
+        color: #fff;
+        background-color: #5372f0;
+        width: 69%;
+    }
+    button:last-child{
+        color: #6c757d;
+        background-color:transparent;
+        width: 28%;
+        border: 1px solid #6c757d;
+    }
+    @media screen and (min-width: 300px) {
+        .zoneDeSaisie{
+            width: 15.8rem;
+            font-size: 0.7em;
+        }
+    }
+    @media screen and (max-width: 300px) {
+        .zoneDeSaisie{
+            width: 7.8rem;
+            font-size: 0.7em;
+        }
+        .pswBox{
+            padding: 0 5px;
+        }
+        input{
+            padding: 5px;
+            font-size: 6px;
+        }
+        button{
+            padding: 2px;
+            font-size: 0.5em;
+        }
+        h2{
+            font-size: 8PX;
+            padding: 10px 0;
+            margin-bottom: 10px;
+        }
+    }
+
+</style>
+
+<body>
+    <section class="zoneDeSaisie">
+        <h2>Générateur de mot de passe</h2>
+        <div class="pswBox">
+            <input type="text" id="password" readonly>
+        </div>
+        <div class="buttons">
+            <button id="generer">Générer</button>
+            <button id="copier">Copier</button>
+        </div>
+    </section>
+
+    <script>
+        // Initialisation des variables
+
+        var copyBtn = document.getElementById('copier');
+        var genBtn = document.getElementById('generer');
+        var input = document.getElementById('password');
+
+
+        // Generer le mot de passe
+
+        genBtn.addEventListener("click", ()=>{
+            var char ="0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            var passwordLength= 16;
+            var password= ""
+
+
+            for(i=0; i < passwordLength; i++){
+                let randomNbr = Math.floor(Math.random() * char.length);
+                password += char.substring(randomNbr, randomNbr + 1);
+
+
+                input.value = password;
+
+                copyBtn.style.background = "#6c757d";
+                copyBtn.style.color = "#fff";
+            }
+        }, false)
+
+        // Copier le mot de passe
+
+        copyBtn.addEventListener("click", ()=>{
+            if(input.value.length == 16){
+                input.select();
+                document.execCommand("copy");
+
+                copyBtn.style.background = "transparent"
+                copyBtn.style.color = "#000"
+
+                alert("Mot de passe copié")
+            }else{
+                alert('Veuillez generer un mot de passe')
+            }
+        }, false)
+
+    </script>
+</body>
+</html>

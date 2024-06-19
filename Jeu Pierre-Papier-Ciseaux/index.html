@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu Pierre-Papier-Ciseaux</title>
+    <link href="index.css" rel="stylesheet">
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@100&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,300&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;;
+    }
+    body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        flex-direction: column;
+        background-color: #5372f0;
+    }
+    section{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 34rem;
+        background-color: #fff;
+        padding: 1.5rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        border-radius: 6px;
+        font-size: 1.5em;
+        margin: 20em 20em;
+    }
+    .verification{
+        font-size: 2em;
+        font-weight: bolder;
+    }
+    .choix{
+        display: flex;
+        width: 100%;
+        justify-content:space-between ;
+    }
+    .choix h4{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-transform: uppercase;
+        color: #999;
+    }
+    img{
+        width: 3.7rem;
+        height: 3.7rem;
+        margin: 1.2 0;
+    }
+    button{
+        padding: 5px 40px;
+        /* margin-right: 15px; */
+        margin-top: 20px;
+        border: 1px solid #5372f0;
+        background-color: #5372f0;
+        color:white;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: 0.5s;
+        text-transform: capitalize;
+        font-weight: bold;
+        font-size: 1em;
+    }
+    button:hover{
+        background: #fff;
+        color:#5372f0;
+    }
+@media screen and (max-width: 990px) {
+    section{
+        font-size: 0.6rem
+    }
+    .choix{
+        display: flex;
+        width: 50%;
+        justify-content:space-between ;
+    }
+    
+}
+@media screen and (max-width: 300px) {
+    section{
+        font-size: 0.5rem;
+        width: 20em;
+    }
+    .choix{
+        display: flex;
+        width: 80%;
+        justify-content:space-between ;
+    }
+    button{
+        padding: 2px 5px;
+        /* margin-right: 15px; */
+        margin-top: 20px;
+        transition: 0.5s;
+        text-transform: capitalize;
+        font-weight: bold;
+        font-size: 1em;
+    }
+}
+    
+</style>
+
+
+<body>
+    <section>
+        <div class="choix">
+            <h4>Vous <span id="choix-user"></span></h4>
+            <h4>Ordinateur<span id="choix-computer"></span></h4>
+        </div>
+        <h4><span id="verification"></span></h4>
+        <div class="bouton_choix">
+            <button id="pierre">Pierre</button>
+            <button id="papier">Papier</button>
+            <button id="ciseaux">ciseaux</button>
+        </div>
+    </section>
+
+    <script>
+        // Initialisation des variables
+
+        var afficheChoixOrdinateur = document.getElementById('choix-computer'),
+            afficheChoixUser = document.getElementById('choix-user'),
+            afficheResultat = document.getElementById('verification');
+
+
+        var Choixpossible = document.querySelectorAll('button');
+        let choixUser;
+        let choixComputer;
+        let resultat;
+
+        // Implementation de la fonction qui gerera le resultat de la partie de jeu
+
+        Choixpossible.forEach(Element=>{
+            Element.addEventListener("click", function(e){
+                choixUser = e.target.id;
+                afficheChoixUser.innerHTML = `<img src="${choixUser}.jpg">`;
+
+            ChoixOrdinateur();
+            verification();
+            }, false)
+        })
+
+        // fonction affichage choix du perso
+
+        function ChoixOrdinateur(){
+            let random = Math.floor(Math.random() * 3) +1;
+
+            if(random === 1){
+                choixComputer = "pierre";
+            }
+            if(random === 2){
+                choixComputer = "papier";
+            }
+            if(random === 3){
+                choixComputer = "ciseaux";
+            }
+
+            afficheChoixOrdinateur.innerHTML = `<img src="${choixComputer}.jpg">`;
+        }
+
+        // fonction affichage choix du computer
+
+        function verification(){
+            if(choixUser == choixComputer){
+                resultat = "Egalité !"
+            }
+            if(choixUser == "pierre" && choixComputer == "papier"){
+            resultat = "Perdu !" 
+            }
+            if(choixUser == "papier" && choixComputer == "ciseaux"){
+                resultat = "Perdu !" 
+            }
+            if(choixUser == "ciseaux" && choixComputer == "pierre"){
+                resultat = "Perdu !" 
+            }
+            if(choixUser == "pierre" && choixComputer == "ciseaux"){
+                resultat = "Gagné !" 
+            }
+            if(choixUser == "papier" && choixComputer == "pierre"){
+                resultat = "Gagné !" 
+            }
+            if(choixUser == "ciseaux" && choixComputer == "papier"){
+                resultat = "Gagné !" 
+            }
+            
+            afficheResultat.innerHTML = resultat;
+        }
+    </script>
+
+
+</body>
+</html>

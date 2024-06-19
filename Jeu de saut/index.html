@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeux De Saut</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@100&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,300&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;;
+    }
+    body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #18f;
+        flex-direction: column;
+    }
+    main{
+        margin: 25em 25em;
+    }
+    section{
+        background-color: #fff;
+        padding: 1.2rem;
+        border-radius: 0.4rem;
+        box-shadow: 00 50px rgba(0,0,0,0.1);
+    }
+    .zoneDeJeu{
+        width: 50rem;
+        height: 25rem;
+        border: 1px solid #000;
+        overflow: hidden;
+        border: 0;
+        border-bottom: 1px solid #18f;
+    }
+    .bonhome{
+        width: 1.2rem;
+        height: 2.5rem;
+        position: relative;
+        top: 21.5rem;
+        object-fit: cover;
+        /* animation: saut 500ms infinite; */
+    }
+    .animation{
+        animation: saut 500ms infinite;
+    }
+    .bonhome img{
+        width: 200%;
+        height: 150%;
+        object-fit: cover;
+    }
+    .boule{
+        width: 2em;
+        height: 2em;
+        background-color: #000;
+        position: relative;
+        top: 20.5rem;
+        left:46.8rem;
+        border-radius: 50%;
+        animation: roule 2.5s infinite;
+    }
+    .boutons{
+        margin-top: 0.6rem;
+        text-align: center;
+    }
+
+    button,a{
+        padding: 0.6rem 3rem;
+        border-radius: 0.3rem;
+        border: 0;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+        font-weight: bold;
+        cursor: pointer;
+        background-color: #fff;
+        font-size: 0.9rem;
+        color: black;
+        text-decoration: none;
+    }
+
+    @keyframes saut{
+        0%{
+            top: 20.6rem
+        }
+        25%{
+            top: 15.6rem
+        }
+        50%{
+            top: 15.6rem
+        }
+        100%{
+            top: 20.6rem
+        }
+    }
+
+    @keyframes roule{
+        0%{
+            left: 46.8rem
+        }
+        100%{
+            left: -5rem
+        }
+    }
+
+
+
+
+@media screen and (max-width: 990px) {
+   .zoneDeJeu{
+    width: 10em;
+    height: 20%;
+   }
+   .bonhome img{
+        width: 100%;
+        height: 150%;
+        object-fit: cover;
+    }
+    body{
+        height: 20%;
+    }
+    section{
+        padding: 1.2rem;
+        height: 40%;
+    }
+    .zoneDeJeu{
+        width: 20rem;
+        height: 25rem;
+        border: 1px solid #000;
+        overflow: hidden;
+        border: 0;
+        border-bottom: 1px solid #18f;
+    }
+    
+    .bonhome img{
+        width: 200%;
+        height: 150%;
+        object-fit: cover;
+    }
+    .boule{
+        width: 2em;
+        height: 2em;
+        background-color: #000;
+        position: relative;
+        top: 20.5rem;
+        left:46.8rem;
+        border-radius: 50%;
+        animation: roule 2.5s infinite;
+    }
+    .boutons{
+        margin-top: 0.6rem;
+        text-align: center;
+    }
+
+    /* button,a{
+        padding: 0.6rem 3rem;
+        border-radius: 0.3rem;
+        border: 0;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+        font-weight: bold;
+        cursor: pointer;
+        background-color: #fff;
+        font-size: 0.9rem;
+        color: black;
+        text-decoration: none;
+    }  */
+}
+@media screen and (max-width: 300px) {
+   body{
+    font-size: 1rem;
+    height: 20;
+   }
+   .zoneDeJeu{
+    width: 10em;
+    height: 50%;
+    width: 100%;
+   }
+   /* .bonhome img{
+        width: 50%;
+        height: 150%;
+        object-fit: cover;
+    } */
+    section{
+        padding: 1.2rem;
+    }
+    .zoneDeJeu{
+        width: 10rem;
+        height: 25rem;
+        border: 1px solid #000;
+        overflow: hidden;
+        border: 0;
+        border-bottom: 1px solid #18f;
+    }
+    
+    .bonhome img{
+        width: 150%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .boule{
+        width: 1em;
+        height: 1em;
+        background-color: #000;
+        position: relative;
+        top: 20.5rem;
+        left:46.8rem;
+        border-radius: 50%;
+        animation: roule 2.5s infinite;
+    }
+    .boutons{
+        margin-top: 0.6rem;
+        font-size: 0.1em;
+        text-align: center;
+    }
+    .boule{
+        top: 21.5rem;
+        left:46.8rem;
+        animation: roule 5.5s infinite;
+    }
+    .bonhome{
+        top: 22.5rem;
+        object-fit: cover;
+    }
+    button,a{
+        padding: 0.1rem 1rem;
+        border-radius: 0.3rem;
+        border: 0;
+        font-size: 0.5rem;
+    }
+
+
+
+    @keyframes saut{
+        0%{
+            top: 20.6rem
+        }
+        25%{
+            top: 19.6rem
+        }
+        50%{
+            top: 19.6rem
+        }
+        100%{
+            top: 20.6rem
+        }
+    }
+
+    @keyframes roule{
+        0%{
+            left: 46.8rem
+        }
+        100%{
+            left: -5rem
+        }
+    }
+
+}
+
+
+</style>
+
+
+<body>
+    <main>
+        <section>
+            <div class="zoneDeJeu">
+                <div class="bonhome">
+                    <img src="photo_2023-10-21_11-31-48.jpg" alt="bonhomme">
+                </div>
+                <div class="boule"></div>
+            </div>
+        </section>
+        <div class="boutons">
+            <button id="sauter">SAUTER</button>
+            <a href="index.html">START</a>
+        </div>
+    </main>
+
+    <script>
+        // Initialisation des variables
+
+        var bonhome = document.querySelector(".bonhome");
+        var boule = document.querySelector(".boule");
+        var bouton_sauter = document.getElementById("sauter");
+
+        // Implementation du bouton pour faire sauter le perso
+
+        bouton_sauter.addEventListener("click", function(){
+            bonhome.classList.add('animation');
+            setTimeout(function(){
+                bonhome.classList.remove('animation');
+            }, 500)
+        }, false)
+
+        // Affichage du mot "perdu" en cas de collision
+
+        var verification = setInterval(function(){
+        var bonhomeTop = parseInt(window.getComputedStyle(bonhome).getPropertyValue("top"));
+        var bouleleft =  parseInt(window.getComputedStyle(boule).getPropertyValue("left"));
+
+        if(bouleleft<20 && bouleleft>0 && bonhomeTop>=325){
+                boule.style.animation = "none";
+                alert("vous avez perdu");
+            }
+        })
+
+
+    </script>
+</body>
+</html>

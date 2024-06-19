@@ -1,0 +1,375 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Roboto+Mono:wght@300;400&display=swap');
+/* html{
+    font-size: 16px;
+} */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', monospace;
+}
+    
+body{
+    display: flex;
+    padding: 1em 1em;
+    font-size: 1em;
+    background-color:#2e475d;
+    width: 100%;
+}
+/*******************navvvv****************************/
+nav{
+    border: solid 1px black;
+    margin-right: 1rem;
+    border-radius: 0.5rem;
+    padding: 1em 2em; 
+    background-color: rgb(234, 234, 234);
+}
+.nav-img{
+    width: 9.5rem;
+    padding: 0.4em;
+    border-radius: 0.5em; 
+    /* background-color: #000; */
+}
+ul li{
+    list-style: none;
+    padding: 2em 1em;/*media querry none*/
+    font-size: 0.52em;
+    transition: 0.8s ease-out;
+    cursor: pointer;
+    /* border-bottom: solid black 1px; */
+}
+ul li:hover{
+    background-color: #000;
+    color: white;
+    border-bottom: 2px solid white;
+    transform: translateX(8px);
+}
+ul li:hover a{
+    color: white;    
+}
+li:hover span{
+    display: block;
+}
+ul{
+    border-bottom: solid black 1px;
+    margin-bottom: 4em;
+}
+a{
+    text-decoration: none;
+    color: #000;
+    font-size: 2em;
+    transition: 1.25s ease-out;
+    font-weight: bolder;
+}
+li span{
+    font-size: 0.7rem;
+    display: none;
+    transition: 0.25s ease-out;
+    /* color: rgb(243, 221, 99); */
+    color: rgb(99, 219, 243);
+    
+} 
+
+button{
+    cursor: pointer;
+    text-align: justify;
+    justify-content: center;
+    border:solid 1px 2e475d;
+    align-self:center;
+    border-radius: 0.8em;
+    background-color:#2e475d;
+    text-decoration: none;
+    /* margin-left: 5em; */
+    font-size: 0.4em; 
+    padding: 2em 3em; 
+    align-items: center;
+}
+button a{
+    color: white;
+}
+button:hover{
+    background-color:white  ;
+    color: #5d3c2e;
+    box-shadow: none;
+    border:solid 1px #2e475d;
+}
+button:hover a{
+    color: #2e475d;
+}
+button img{
+    width: 2rem;
+}
+
+
+
+
+/********************main*******************************************/
+
+.section1{
+    margin-bottom: 0.5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1em;
+    border-radius: 0.5rem;
+    background-color: rgb(30, 32, 38);
+    color: white;
+    padding: 1em 1em;
+}
+.section1 img{
+    width: 5%;
+    border-radius: 100%;
+    margin-left: 1rem;
+}
+.nom{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 50%;
+   
+}
+.section2{
+    border: 1px solid black;
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: space-between;
+    height: 80vh;
+    padding: 1em;
+    /* border-radius: 1.5rem; */
+    background-image:url(impression-fond-conception-azteque-sans-couture-tribale-style-geometrique-noir-blanc-vecteur_53876-154220.jpg);
+    background-size: cover;
+} 
+.section2 img{
+    width: 65%;
+    border-radius: 100%;
+}
+.section2 > div{
+    border: 1px black solid;
+    height: 60%;
+    font-size: 2em;
+    padding: 1rem;
+    box-shadow: #737476 10px 10px 10px 1px;
+
+}
+.photo{
+    width: 28%;
+    text-align: center;
+    background-color:white;
+    border-radius: 1.5rem;
+    color: black;
+}
+
+.info{
+    justify-content: flex-start;
+    width: 70%;
+    font-size: 0.5em;
+    background-color:white;
+    border-radius: 0.5rem;
+    
+}
+.info h4, p{
+    border-bottom: 0.1px solid #f1f1f1 ;
+    min-height: 25%;
+    box-shadow: #f1f1f1 0px 0px 5px 0px;
+    font-size: 2vh;
+}
+.info p span{
+    border: solid 1px red;
+}
+.section3{
+    align-items: center;
+    font-size: 1em;
+    border-radius: 0.5rem;
+    padding: 1em 1em;
+    background-color: rgb(30, 32, 38);
+    color: white;
+}
+main{
+    width: 100%;
+}
+/********************Media queries********************************************/
+
+
+@media screen and (max-width: 600px) {
+    body{
+        padding: 1em 0.5em;
+        font-size: 1em;
+        width: 100%;
+    }
+    nav{
+        margin-right: 0.5rem;
+        border-radius: 10px;
+        padding: 1em 0.2em; 
+        background-color: rgb(51, 51, 51);
+        color: white;
+        width: 50%;
+        justify-content: center;
+    }
+    .section1, .section3{
+        background-color: white;
+        color:black
+    }
+    .nav-img{
+        width: 90%;
+    }
+    ul li{
+        padding: 1.8em 0.5em;/*media querry none*/
+        font-size: 0.5em;
+    }
+    ul li:hover{
+        transform: translateX(0.5px);
+        background-color: white;
+    }
+    ul li:hover a{
+        color: black;
+    }
+    ul{
+        margin-bottom: 2.5em;
+    }
+    a{
+        font-size: 1.5em;
+        color: white;
+        text-align: center;
+    }
+    li span{
+        font-size: 0.7rem; 
+    } 
+    
+    button{
+        font-size: 0.5em; 
+        padding: 0.5em 0.5em;
+        width: 100%;
+        text-align: center;
+    }
+    button a{
+        text-align: center;
+    }
+    button img{
+        width: 3rem;
+        padding-left: 2.5rem;
+        display: none;
+    }
+    .section1 img{
+        display: none;
+    }
+
+
+    /*****************section1************************/
+
+
+    .section1{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 0.8em;
+        padding: 0.5em 1em;
+        gap: 0.5em;
+        text-align:center;
+    }
+    main{
+        width: 85%;
+    }
+
+    /******************section3*************************/
+
+    .section3{
+        align-items: center;
+        font-size: 0.8em;
+        padding: 1em 1em;
+    }
+
+    /****************section2***************************/
+    .section2{
+        display: flex;
+        justify-content: space-between;
+        height: 75vh;
+        padding: 0.5em;
+        margin-bottom: 0.5rem;
+        /* border-radius: 1.5rem; */
+    }
+    .section2 img{
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+    .section2 > div{
+        height: 60%;
+        font-size: 0.8em;
+        padding: 1rem;
+
+    }
+    .photo{
+        text-align: center;
+        background-color:#2e475d;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-radius: 0.5rem;
+        margin-right: 0.5em;
+    }
+    .photo img{
+        border-radius: 10%;
+        width: 160%;
+        align-self: center;
+    }
+    .photo h4{
+        align-self: center;
+    }
+
+    .info{
+        justify-content: flex-start;
+        width: 100%;
+        font-size: 0.4em;
+        background-color: white;  
+        height: 130px; 
+    }
+    .info h4, p{
+        border-bottom: 0.1px solid #f1f1f1 ;
+        min-height: 25%;
+        box-shadow: #f1f1f1 0px 0px 5px 0px;
+        font-size: 0.5rem;
+    }
+   
+}
+
+@media screen and (max-width: 300px) {
+    nav{
+        margin-right: 0.1em;
+        margin-left: 0;
+    }
+    .info h4, p{
+        border-bottom: 0.1px solid #f1f1f1 ;
+        min-height: 25%;
+        font-size: 0.3em;
+    }
+    .photo{
+        width: 75%;
+        text-align: center;
+     }
+    .section1{
+        font-size: 0.7em;
+        padding: 0.3em 0.1em;
+        width: 98%;
+    }
+    .section3{
+        font-size: 0.7em;
+        padding: 0.3em 0.2em;
+        width: 98%;
+        text-align: center;
+    }
+    .section2 > div{
+        font-size: 0.5em;
+        text-align: start;
+    }
+    .section2 img{
+        width: 50%;
+        margin-bottom: 2rem;
+    }
+    .section2{
+        margin-bottom: 0.5em;
+        height: 80vh;
+        padding: 0.5em;
+    }
+}
+
